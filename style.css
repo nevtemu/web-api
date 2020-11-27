@@ -1,0 +1,93 @@
+html{
+    font-size: 10px;
+}
+body{
+    background-color: rgb(185, 181, 181);
+}
+main{
+    display:grid;
+    grid-template: auto auto minmax(40rem, auto) /1fr 1fr;
+    grid-gap: 1rem;
+}
+#map{
+    height: calc(100% - 3rem - 4px);
+    width:100%;
+}
+.map, .holidays, .ip, .weather, .system, .timeAndLang{
+    height:auto;/*remove*/
+    border: solid 5px;
+    border-color: #262223;
+    border-radius: 25px 25px 0px 0px;
+    background-color: #ddc6b6;
+    font: normal 3rem Arial;
+    color: #262223;
+}
+#holidaysInfo, #ipInfo, #weatherInfo, #system, #time{
+    padding: 1rem 2rem 2rem 2rem;
+}
+#weatherPicture{
+    background-color: paleturquoise;
+    height: 100px;
+    width:100px;
+}
+#flag{
+    height: 25px;
+    width:40px;
+}
+.title{
+    background-color: #262223;
+    height:auto;
+    border: none;
+    border-radius: 15px 15px 0px 0px;
+    font: normal 3rem Arial;
+    color: #ddc6b6;
+    padding-left: 3rem;
+}
+/* Medium screens/Tablets */
+@media (max-width: 1500px){
+  .title{
+    font: normal 2rem Arial;
+    padding-left: 2rem;
+  }  
+  .map, .holidays, .ip, .weather, .system, .timeAndLang{
+    font: normal 2rem Arial;
+  }
+  #map{
+    height: calc(100% - 2rem - 3px);
+  }
+  #weatherPicture{
+    height: 70px;
+    width:70px;
+  }
+  #flag{
+    height: 20px;
+    width:35px;
+  }
+}
+/* Small screens/Phones */
+@media (max-width: 600px){
+  .title{
+    font: normal 1rem Arial;
+    padding-left: 1rem;
+  }  
+  .map, .holidays, .ip, .weather, .system, .timeAndLang{
+    font: normal 1rem Arial;
+  }
+  #map{
+    height: calc(100vh - 40rem);
+  }
+  #weatherPicture{
+    height: 50px;
+    width:50px;
+  }
+  #flag{
+    height: 12px;
+    width:20px;
+  }
+  main{
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+}
