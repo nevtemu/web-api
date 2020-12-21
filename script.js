@@ -1,4 +1,4 @@
-let city, country, place, myMap
+let city, country, place, myMap;
 const date = new Date();
 const year = date.getFullYear();
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -23,7 +23,7 @@ function loadIp (data) {
     country = data.country_code
     city = data.city
     place = {lat:parseFloat(data.latitude), lng:parseFloat(data.longitude)}
-    document.querySelector("#ipInfo").innerHTML= `
+    $("#ipInfo").innerHTML= `
         <b>Your country:</b> <img id="flag" src="${data.country_flag}" alt=""> ${data.country} <br>
         <b>Your city:</b> ${data.city} <br>
         <b>Your IP address:</b> ${data.ip} <br>
@@ -36,7 +36,7 @@ function loadIp (data) {
 function loadWeather (data) {
     let sunrise = new Date(data.sys.sunrise*1000)
     let sunset = new Date(data.sys.sunset*1000)
-    document.querySelector("#weatherInfo").innerHTML= `
+    $("#weatherInfo").innerHTML= `
         <img id="weatherPicture" src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt=""> <br>
         <b>Temperature:</b> ${data.main.temp}˚C <br>
         <b>Humidity:</b> ${data.main.humidity}% <br>
@@ -44,7 +44,7 @@ function loadWeather (data) {
         <b>Sunset:</b> ${sunset.getHours()}:${sunset.getMinutes() >= 10 ? sunset.getMinutes() : "0"+sunset.getMinutes()}`;
 }
 function loadHolidays (data) {
-    data.response.holidays.forEach(element => {document.querySelector("#holidaysInfo").innerHTML+=`<b>${element.date.datetime.day}.${monthNames[element.date.datetime.month-1]}.${element.date.datetime.year}</b> - ${element.name} <br>` 
+    data.response.holidays.forEach(element => {$("#holidaysInfo").innerHTML+=`<b>${element.date.datetime.day}.${monthNames[element.date.datetime.month-1]}.${element.date.datetime.year}</b> - ${element.name} <br>` 
     })
 }
 function drawMap(){
@@ -60,8 +60,13 @@ function centerMap(){
     marker.setMap(myMap);
     myMap.setCenter(marker.getPosition());
 }
-document.getElementById("system").innerHTML = `You are using <br><b>${platform.name} v${platform.version}</b> <br>on <b>${platform.os}</b>`;
-document.getElementById("time").innerHTML = `Your browser language: <b>${language} </b><br> Your system time: <b>${time}</b><br> Time zone: <b>${timezone}</b>`;
+$("#system").innerHTML = `
+    You are using <br><b>${platform.name} v${platform.version}</b> <br>
+    on <b>${platform.os}</b>`;
+$("#time").innerHTML = `
+    Your browser language: <b>${language} </b><br> 
+    Your system time: <b>${time}</b><br> 
+    Time zone: <b>${timezone}</b>`;
 $(document).ready(function(){
     loadData("https://ipwhois.app/json/", loadIp)
 });
