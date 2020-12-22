@@ -23,12 +23,12 @@ function loadIp (data) {
     country = data.country_code
     city = data.city
     place = {lat:parseFloat(data.latitude), lng:parseFloat(data.longitude)}
-    $("#ipInfo").innerHTML= `
+    document.getElementById("ipInfo").innerHTML= `
         <b>Your country:</b> <img id="flag" src="${data.country_flag}" alt=""> ${data.country} <br>
         <b>Your city:</b> ${data.city} <br>
         <b>Your IP address:</b> ${data.ip} <br>
         <b>Your currency: </b>${data.currency} <br>
-        <b>Currency exchange rate to USD:</b> ${data.currency_rates}`;
+        <b>Currency exchange rate to USD:</b> ${Number(data.currency_rates).toFixed(2)}`;
     centerMap()
     loadData(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key3}`, loadWeather);
     loadData(`https://calendarific.com/api/v2/holidays?&api_key=${key2}&country=${country}&year=${year}&month=${monthNumber+1}`, loadHolidays);    
@@ -36,7 +36,7 @@ function loadIp (data) {
 function loadWeather (data) {
     let sunrise = new Date(data.sys.sunrise*1000)
     let sunset = new Date(data.sys.sunset*1000)
-    $("#weatherInfo").innerHTML= `
+    document.getElementById("weatherInfo").innerHTML= `
         <img id="weatherPicture" src="http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt=""> <br>
         <b>Temperature:</b> ${data.main.temp}˚C <br>
         <b>Humidity:</b> ${data.main.humidity}% <br>
@@ -44,12 +44,12 @@ function loadWeather (data) {
         <b>Sunset:</b> ${sunset.getHours()}:${sunset.getMinutes() >= 10 ? sunset.getMinutes() : "0"+sunset.getMinutes()}`;
 }
 function loadHolidays (data) {
-    data.response.holidays.forEach(element => {$("#holidaysInfo").innerHTML+=`<b>${element.date.datetime.day}.${monthNames[element.date.datetime.month-1]}.${element.date.datetime.year}</b> - ${element.name} <br>` 
+    data.response.holidays.forEach(element => {document.getElementById("holidaysInfo").innerHTML+=`<b>${element.date.datetime.day}.${monthNames[element.date.datetime.month-1]}.${element.date.datetime.year}</b> - ${element.name} <br>` 
     })
 }
 function drawMap(){
     let location = {lat:25.2048493, lng:55.2707828}
-    let mapOptions = {zoom:13, center:location}      
+    let mapOptions = {zoom:11, center:location}      
     myMap = new google.maps.Map(document.getElementById('map'), mapOptions);
 }
 function centerMap(){
@@ -60,13 +60,13 @@ function centerMap(){
     marker.setMap(myMap);
     myMap.setCenter(marker.getPosition());
 }
-$("#system").innerHTML = `
-    You are using <br><b>${platform.name} v${platform.version}</b> <br>
-    on <b>${platform.os}</b>`;
-$("#time").innerHTML = `
-    Your browser language: <b>${language} </b><br> 
-    Your system time: <b>${time}</b><br> 
-    Time zone: <b>${timezone}</b>`;
+document.getElementById("system").innerHTML = `
+    <b>You are using </b><br>${platform.name} v${platform.version}<br>
+    <b>on </b>${platform.os}`;
+document.getElementById("time").innerHTML = `
+    <b>Your browser language: </b>${language} <br> 
+    <b>Your system time: </b>${time}<br> 
+    <b>Time zone: </b>${timezone}`;
 $(document).ready(function(){
     loadData("https://ipwhois.app/json/", loadIp)
 });

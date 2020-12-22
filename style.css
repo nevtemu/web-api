@@ -14,8 +14,8 @@ main{
     width:100%;
 }
 .map, .holidays, .ip, .weather, .system, .timeAndLang{
-    height:auto;/*remove*/
-    border: solid 5px;
+    height:auto;
+    border: solid 4px;
     border-color: #262223;
     border-radius: 25px 25px 0px 0px;
     background-color: #ddc6b6;
@@ -26,9 +26,9 @@ main{
     padding: 1rem 2rem 2rem 2rem;
 }
 #weatherPicture{
-    background-color: paleturquoise;
     height: 100px;
     width:100px;
+    float:right;
 }
 #flag{
     height: 25px;
@@ -89,5 +89,5 @@ main{
     flex-direction: column;
     flex-wrap: wrap;
     gap: 1rem;
-}
+  }
 }
