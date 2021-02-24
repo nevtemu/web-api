@@ -1,3 +1,6 @@
+import dotenv from 'dotenv'
+dotenv.config()
+
 let city, country, place, myMap;
 const date = new Date();
 const year = date.getFullYear();
@@ -7,8 +10,6 @@ const month = monthNames[monthNumber];
 const time = `${date.getHours()}:${date.getMinutes() >= 10 ? date.getMinutes() : "0"+date.getMinutes()}`;
 const timezone = date.toTimeString().slice(9);
 const language = window.navigator.language;
-const key3 = '72db68aef9ac708d33aae403c85f16bb'
-const key2 = '86341884ad721f2886a8f9b72ec443ad0114804a'
 
 function loadData(url, myFunction) {
     $.ajax({
@@ -30,8 +31,8 @@ function loadIp (data) {
         <b>Your currency: </b>${data.currency} <br>
         <b>Currency exchange rate to USD:</b> ${Number(data.currency_rates).toFixed(2)}`;
     centerMap()
-    loadData(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key3}`, loadWeather);
-    loadData(`https://calendarific.com/api/v2/holidays?&api_key=${key2}&country=${country}&year=${year}&month=${monthNumber+1}`, loadHolidays);    
+    loadData(`http://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${OW_KEY}`, loadWeather);
+    loadData(`https://calendarific.com/api/v2/holidays?&api_key=${CR_KEY}&country=${country}&year=${year}&month=${monthNumber+1}`, loadHolidays);    
 }
 function loadWeather (data) {
     let sunrise = new Date(data.sys.sunrise*1000)

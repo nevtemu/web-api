@@ -8,7 +8,8 @@
 - [Platform](https://cdnjs.com/libraries/platform "Platform")
 - and system variables
      
-Pulled data using [jQuery](https://jquery.com/ "jQuery") and [Ajax requests](https://api.jquery.com/jquery.ajax/ "Ajax requests")
+Pulled data using [jQuery](https://jquery.com/ "jQuery") and [Ajax requests](https://api.jquery.com/jquery.ajax/ "Ajax requests")      
+Saved API keys into [.env](https://www.npmjs.com/package/dotenv "dot env package") file
 ### Desktop:   
 <img src="./src/screen.png" />     
      
